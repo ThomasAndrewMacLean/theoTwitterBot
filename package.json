@@ -1,0 +1,23 @@
+{
+  "name": "theoTwitterBot",
+  "version": "1.0.0",
+  "description": "a theo twitter bot",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThomasAndrewMacLean/theoTwitterBot.git"
+  },
+  "keywords": [],
+  "author": "Thomas MacLean <hello@thomasmaclean.be> (https://thomasmaclean.be)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ThomasAndrewMacLean/theoTwitterBot/issues"
+  },
+  "homepage": "https://github.com/ThomasAndrewMacLean/theoTwitterBot#readme"
+}
