@@ -1,0 +1,11 @@
+{
+  "lambda": {
+    "role": "theoTwitterBot-executor",
+    "name": "theoTwitterBot",
+    "region": "eu-west-1"
+  },
+  "api": {
+    "id": "7qllfs9gua",
+    "module": "app"
+  }
+}

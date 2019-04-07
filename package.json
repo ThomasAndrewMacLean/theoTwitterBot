@@ -1,23 +1,34 @@
 {
-  "name": "theoTwitterBot",
-  "version": "1.0.0",
-  "description": "a theo twitter bot",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ThomasAndrewMacLean/theoTwitterBot.git"
-  },
-  "keywords": [],
-  "author": "Thomas MacLean <hello@thomasmaclean.be> (https://thomasmaclean.be)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ThomasAndrewMacLean/theoTwitterBot/issues"
-  },
-  "homepage": "https://github.com/ThomasAndrewMacLean/theoTwitterBot#readme"
+    "name": "theoTwitterBot",
+    "version": "1.0.0",
+    "description": "a theo twitter bot",
+    "main": "app.js",
+    "directories": {
+        "doc": "docs"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "deploy": "claudia create --version dev --region eu-west-1 --api-module app --set-env-from-json .env.json --profile claudiaJS",
+        "release": "claudia set-version --version production",
+        "update": "claudia update --version dev --set-env-from-json .env.json --profile claudiaJS"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ThomasAndrewMacLean/theoTwitterBot.git"
+    },
+    "keywords": [],
+    "author": "Thomas MacLean <hello@thomasmaclean.be> (https://thomasmaclean.be)",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/ThomasAndrewMacLean/theoTwitterBot/issues"
+    },
+    "homepage": "https://github.com/ThomasAndrewMacLean/theoTwitterBot#readme",
+    "dependencies": {
+        "claudia-api-builder": "^4.1.2",
+        "dotenv-json": "^1.0.0",
+        "twit": "^2.2.11"
+    },
+    "devDependencies": {
+        "claudia": "^5.4.2"
+    }
 }
