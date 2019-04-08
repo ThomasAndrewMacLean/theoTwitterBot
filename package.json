@@ -1,5 +1,5 @@
 {
-    "name": "theoTwitterBot",
+    "name": "theo-twitter-bot",
     "version": "1.0.0",
     "description": "a theo twitter bot",
     "main": "app.js",
