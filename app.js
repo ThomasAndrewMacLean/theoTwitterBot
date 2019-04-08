@@ -57,7 +57,7 @@ api.get('/randomTweet', request => {
     return generateTweet();
 });
 
-api.get('/tweet', (req, res) => {
+api.put('/tweet', (req, res) => {
     const b64auth = (req.headers.Authorization || '').split(' ')[1] || '';
     const [login, password] = new Buffer(b64auth, 'base64')
         .toString()
