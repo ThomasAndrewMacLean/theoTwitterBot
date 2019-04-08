@@ -1,3 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 20px;
+    height: 100vh;
+    overflow: hidden;
+}
+
 h1 {
-    color: #42566f
+    color: #42566f;
+
+}
+
+.bar {
+    background: #42566f;
+    left: -50px;
+    height: 8rem;
+    width: 120vw;
+    position: absolute;
+    /* transition-property: transform;
+    transition-duration: 0.5s; */
+}
+
+.bar:hover {
+    /* transform: rotate(5deg); */
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#tweet {
+    margin: 5rem;
+    max-width: 75%;
+    height: 10rem;
+    text-align: center;
 }

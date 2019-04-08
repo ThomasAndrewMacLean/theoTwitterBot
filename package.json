@@ -8,9 +8,10 @@
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "deploy": "claudia create --version dev --region eu-west-1 --api-module app --set-env-from-json .env.json --profile claudiaJS",
+        "dev": "lite-server --baseDir='docs'",
+        "deploy": "claudia create --version dev --region eu-west-1 --api-module app --set-env-from-json .env.json --policies policy --profile claudiaJS",
         "release": "claudia set-version --version production",
-        "update": "claudia update --version dev --set-env-from-json .env.json --profile claudiaJS"
+        "update": "claudia update --version dev --set-env-from-json .env.json --policies policy --profile claudiaJS"
     },
     "repository": {
         "type": "git",
@@ -24,11 +25,13 @@
     },
     "homepage": "https://github.com/ThomasAndrewMacLean/theoTwitterBot#readme",
     "dependencies": {
+        "aws-sdk": "^2.437.0",
         "claudia-api-builder": "^4.1.2",
         "dotenv-json": "^1.0.0",
         "twit": "^2.2.11"
     },
     "devDependencies": {
-        "claudia": "^5.4.2"
+        "claudia": "^5.4.2",
+        "lite-server": "^2.4.0"
     }
 }
