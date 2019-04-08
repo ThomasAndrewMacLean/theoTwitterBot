@@ -9,6 +9,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "lite-server --baseDir='docs'",
+        "site": "node uploadSite",
         "deploy": "claudia create --version dev --region eu-west-1 --api-module app --set-env-from-json .env.json --policies policy --profile claudiaJS",
         "release": "claudia set-version --version production",
         "update": "claudia update --version dev --set-env-from-json .env.json --policies policy --profile claudiaJS"
@@ -32,6 +33,7 @@
     },
     "devDependencies": {
         "claudia": "^5.4.2",
-        "lite-server": "^2.4.0"
+        "lite-server": "^2.4.0",
+        "neocities": "0.0.3"
     }
 }
