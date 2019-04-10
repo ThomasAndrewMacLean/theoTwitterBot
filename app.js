@@ -69,11 +69,21 @@ api.put('/tweet', (req, res) => {
         login !== 'theobot' ||
         password !== process.env.CRON_SECRET
     ) {
-        return { message: 'Error in Authorization', login };
+        throw new ApiBuilder.ApiResponse(
+            '<error>' + login + ' login error</error>',
+            { 'Content-Type': 'text/xml' },
+            500
+        );
     }
 
     return generateTweet().then(tweet => {
         T.post('statuses/update', { status: tweet }, (err, data, response) => {
+            if (err)
+                throw new ApiBuilder.ApiResponse(
+                    '<error>' + err + '</error>',
+                    { 'Content-Type': 'text/xml' },
+                    500
+                );
             return data;
         });
     });
