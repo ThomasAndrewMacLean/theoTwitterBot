@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110018468-10"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-110018468-10');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Theo Twitter Bot</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@theoRandomBot1" />
+    <meta name="twitter:creator" content="@theoRandomBot1" />
+    <meta property="og:title" content="Theo Twitter Bot 🤖" />
+    <meta property="og:url" content="https://theobot.neocities.org/" />
+    <meta property="og:description" content="beep beep">
+    <meta property="og:image" content="https://theobot.neocities.org/android-chrome-192x192.png">
+
+</head>
+
+<body>
+    <div class="bar"></div>
+    <div class="wrapper">
+        <form>
+            <div class="row">
+                <div id="success"></div>
+                <div class="twelve columns">
+                    <label for="add-helfie-input">twitter username</label>
+                    <input class="u-full-width" type="text" placeholder="@helfie" id="add-helfie-input" required />
+                </div>
+                <div class="twelve columns">
+                    <button type="submit" class="u-full-width" id="add-helfie-btn">Add a helfie 🎗</button>
+                </div>
+            </div>
+        </form>
+        <ul id="helfiesList"></ul>
+    </div>
+    <script src="addhelfie.js"></script>
+    <style>
+        form {
+            width: 350px;
+            max-width: 70vw;
+
+        }
+    </style>
+</body>
+
+</html>

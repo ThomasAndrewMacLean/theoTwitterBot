@@ -122,7 +122,7 @@ api.post(
         var params = {
             TableName: 'theotwitterbot',
             Item: {
-                id: Date.now().toString(),
+                id: 'helfie:' + request.body.helfie,
                 name: request.body.helfie,
                 type: 'helfie'
             }
@@ -179,17 +179,39 @@ api.put('/answerhelfies', async (req, res) => {
         'Wat een inzicht',
         'Inderdaad',
         'Dacht ik ook',
-        'Geniaal ben jij'
+        'Geniaal ben jij',
+        'Uhu',
+        'Zo had ik het nog niet bekeken',
+        'Ja',
+        'Inderdaad'
     ];
 
-    const answers = [
+    const openingszin = [
         'Ik houd eigenlijk niet van regen, maar voor een spetter zoals jij maak ik een uitzondering.',
         'Ken ik jou niet van Griekenland? Niet? Want daar komen toch alle godinnen vandaan?',
         'Jouw vader is een dief! Hij heeft alle sterren gestolen en in jouw ogen verstopt!',
         'Je lijkt heel erg op mijn toekomstige vrouw..',
         'Is het nou zo warm hier binnen of ben jij dat?',
         'Deed het pijn, Toen je uit de hemel kwam vallen?',
-        'Mijn hobby is puzzelen en jij bent het laatste stukje dat ik zocht.'
+        'Mijn hobby is puzzelen en jij bent het laatste stukje dat ik zocht.',
+        'Houd jij van vrachtwagens? Nee? Dan hebben we iets gemeen. Ik namelijk ook niet.',
+        'Weet jij waar mijn shirt van is gemaakt? Boyfriend material.',
+        'Geloof jij in liefde op het eerste gezicht of zal ik nog een keertje langslopen?',
+        'Ben jij niet moe? Je loopt al uren rondjes in mijn hoofd.',
+        'Liefde troost als zonneschijn na regen.',
+        'Tijd doet er niet toe, liefde is voor altijd.',
+        'Liefde is een betere meester dan plicht.',
+        'Het plezier van de liefde duurt slechts een moment. Pijn van liefde een leven lang.',
+        'Heet jij soms Google? want je hebt alles wat ik zoek',
+        'Ik ben een telefoonboek aan het schrijven, mag ik je nummer?',
+        'Je zal wel moe zijn, nadat je al die tijd in mijn dromen hebt rondgelopen.',
+        'Als de enige plaats waar ik je kon zien in m’n dromen was, zou ik eeuwig slapen.',
+        'Ken je de pagina openingszin.com?',
+        'So open your mouth and close your eyes and give your tounge some exercise.',
+        'Mag ik twee bier, een cola, en jouw telefoonnummer?',
+        'Er moet iets aan de hand zijn met mijn ogen want ik kan ze niet van je afhouden.',
+        'Ik wil met jou wel eens een beschuitje eten.',
+        'Ik wil met jou wel eens een potje klaverjassen.'
     ];
 
     const helfies = await getHelfiesAndId();
@@ -225,7 +247,7 @@ api.put('/answerhelfies', async (req, res) => {
                                 helfie +
                                 getRandom(compliment) +
                                 ',... ' +
-                                getRandom(answers),
+                                getRandom(openingszin),
                             in_reply_to_status_id: ownTweets[0].id
                         },
                         function(err, data, response) {
