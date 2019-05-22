@@ -42,19 +42,6 @@ const getHelfies = () => {
         .scan({ TableName: 'theotwitterbot' })
         .promise()
         .then(response => {
-            const helfies = response.Items.filter(x => x.type === 'helfie').map(
-                x => x.name
-            );
-
-            return helfies;
-        });
-};
-
-const getHelfiesAndId = () => {
-    return dynamoDb
-        .scan({ TableName: 'theotwitterbot' })
-        .promise()
-        .then(response => {
             const helfies = response.Items.filter(x => x.type === 'helfie');
 
             return helfies;
@@ -136,7 +123,7 @@ api.post(
     '/updatehelfie',
     async request => {
         const helfie = request.body.helfie;
-        const helfies = await getHelfiesAndId();
+        const helfies = await getHelfies();
 
         const hh = helfies.find(h => h.name === helfie);
         if (hh) {
@@ -214,7 +201,7 @@ api.put('/answerhelfies', async (req, res) => {
         'Ik wil met jou wel eens een potje klaverjassen.'
     ];
 
-    const helfies = await getHelfiesAndId();
+    const helfies = await getHelfies();
 
     return Promise.all(
         helfies.map(async h => {
@@ -224,51 +211,67 @@ api.put('/answerhelfies', async (req, res) => {
                 screen_name: helfie,
                 count: 10,
                 tweet_mode: 'extended'
-            }).then(data => {
-                console.log('komt ieee');
-                const ownTweets = data.data
-                    .filter(
-                        tw =>
-                            // remove reply tweets
-                            tw.in_reply_to_status_id === null &&
-                            // remove retweets
-                            tw.retweeted_status === undefined
-                    )
-                    .map(tweet => ({
-                        text: tweet.full_text,
-                        id: tweet.id_str
-                    }));
-                if (ownTweets.length && h.laatstetweet !== ownTweets[0].id) {
-                    console.log(ownTweets[0].text);
-                    return T.post(
-                        'statuses/update',
-                        {
-                            status:
-                                helfie +
-                                getRandom(compliment) +
-                                ',... ' +
-                                getRandom(openingszin),
-                            in_reply_to_status_id: ownTweets[0].id
-                        },
-                        function(err, data, response) {
-                            if (err) {
-                                console.log(err);
-                            } else {
-                                var params = {
-                                    TableName: 'theotwitterbot',
-                                    Item: {
-                                        ...h,
-                                        laatstetweet: ownTweets[0].id
-                                    }
-                                };
+            })
+                .then(data => {
+                    console.log('komt ieee');
+                    const ownTweets = data.data
+                        .filter(
+                            tw =>
+                                // remove reply tweets
+                                tw.in_reply_to_status_id === null &&
+                                // remove retweets
+                                tw.retweeted_status === undefined
+                        )
+                        .map(tweet => ({
+                            text: tweet.full_text,
+                            id: tweet.id_str
+                        }));
+                    if (
+                        ownTweets.length &&
+                        h.laatstetweet !== ownTweets[0].id
+                    ) {
+                        console.log(ownTweets[0].text);
+                        return T.post(
+                            'statuses/update',
+                            {
+                                status:
+                                    helfie +
+                                    getRandom(compliment) +
+                                    ',... ' +
+                                    getRandom(openingszin),
+                                in_reply_to_status_id: ownTweets[0].id
+                            },
+                            function(err, data, response) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    var params = {
+                                        TableName: 'theotwitterbot',
+                                        Item: {
+                                            ...h,
+                                            laatstetweet: ownTweets[0].id
+                                        }
+                                    };
 
-                                return dynamoDb.put(params).promise();
-                                console.log(data.text + ' tweeted!');
+                                    return dynamoDb.put(params).promise();
+                                    console.log(data.text + ' tweeted!');
+                                }
                             }
+                        );
+                    }
+                })
+                .catch(err => {
+                    var params = {
+                        TableName: 'theotwitterbot',
+                        Item: {
+                            ...h,
+                            error: err.message
                         }
-                    );
-                }
-            });
+                    };
+
+                    return dynamoDb.put(params).promise();
+                    return err;
+                });
         })
     );
 });

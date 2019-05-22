@@ -36,10 +36,15 @@ button.addEventListener('click', e => {
 fetch(gethelfies)
     .then(x => x.json())
     .then(allHelfies => {
+        console.log(allHelfies);
         allHelfies.forEach(helfie => {
             var listItem = document.createElement('li');
-            listItem.textContent = '@' + helfie;
+            listItem.textContent = '@' + helfie.name;
 
+            if (helfie.error) {
+                listItem.classList.add('blocked');
+                listItem.textContent += ' (blocked)';
+            }
             helfiesList.appendChild(listItem);
         });
     });
