@@ -12,7 +12,7 @@
         "site": "node uploadSite",
         "deploy": "claudia create --version dev --region eu-west-1 --api-module app --set-env-from-json .env.json --policies policy --profile claudiaJS",
         "release": "claudia set-version --version production",
-        "update": "claudia update --version dev --set-env-from-json .env.json --policies policy --profile claudiaJS",
+        "update": "claudia update --version dev --set-env-from-json .env.json --policies policy --profile claudia",
         "log": "smoketail -f /aws/lambda/theoTwitterBot -r eu-west-1"
     },
     "repository": {
@@ -30,6 +30,7 @@
         "aws-sdk": "^2.437.0",
         "claudia-api-builder": "^4.1.2",
         "dotenv-json": "^1.0.0",
+        "node-fetch": "^2.6.0",
         "smoketail": "^0.2.1",
         "twit": "^2.2.11"
     },
